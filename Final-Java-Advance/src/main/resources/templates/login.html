@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" href="../static/assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/login.css}" href="../static/assets/css/login.css"/>
+    <script th:inline="javascript" th:src="@{/assets/js/login.js}" src="../static/assets/js/login.js"></script>
+</head>
+<body>
+<div id="loginForm">
+    <form th:action="@{/login}" method="post">
+        <div>
+            <p>LOGIN PAGE</p>
+        </div>
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+        <button onclick="openFormRegister()">Register</button>
+    </form>
+</div>
+
+    <div id="register">
+        <form id="registerForm">
+            <span class="close" onclick="closeForm()">&times;</span>
+            <div>
+                <p>REGISTRY</p>
+            </div>
+            <label for="username_register">Username:</label>
+            <input type="text" id="username_register" name="username_register" required maxlength="50"><br><br>
+            <label for="password_register">Password:</label>
+            <input type="password" id="password_register" name="password_register" required maxlength="50"><br><br>
+            <label for="firstName_register">First Name:</label>
+            <input type="text" id="firstName_register" name="firstName_register" required maxlength="50"><br><br>
+            <label for="lastName_register">Last Name:</label>
+            <input type="text" id="lastName_register" name="lastName_register" required maxlength="50"><br><br>
+            <label for="role_register">Role:</label>
+            <select id="role_register" name="role_register">
+                <option value="ADMIN">ADMIN</option>
+                <option value="MANAGER">MANAGER</option>
+                <option value="EMPLOYEE">EMPLOYEE</option>
+            </select><br><br>
+            <label for="departmentOptions_register">Department:</label>
+            <select id="departmentOptions_register">
+                <option value="Marketing">Marketing</option>
+                <option value="Sale">Sale</option>
+                <option value="Bảo vệ">Bảo vệ</option>
+                <option value="Nhân sự">Nhân sự</option>
+                <option value="Kỹ thuật">Kỹ thuật</option>
+                <option value="Tài chính">Tài chính</option>
+                <option value="Phó giám đốc">Phó giám đốc</option>
+                <option value="Giám đốc">Giám đốc</option>
+                <option value="Thư kí">Thư kí</option>
+                <option value="Bán hàng">Bán hàng</option>
+            </select>
+            <br><br>
+            <button type="submit" onclick="createAccount()">Register Now</button>
+        </form>
+    </div>
+</body>
+</html>

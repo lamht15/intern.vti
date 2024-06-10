@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" href="../static/assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/admin.css}" href="../static/assets/css/admin.css"/>
+    <script th:inline="javascript" th:src="@{/assets/js/admin.js}" src="../static/assets/js/admin.js"></script> <!-- Gọi tập tin JavaScript -->
+</head>
+<body>
+<div class="navbar">
+    <div class="content-nav">
+        <img th:src="@{/assets/images/home.png}" src="../static/assets/images/home.png" class="logo">
+        <div class="menu">
+            <a href="#" onclick="displayAccountList(0)">Account</a>
+            <a href="#" onclick="displayDepartmentList(0)">Department</a>
+        </div>
+        <div class="icons">
+            <img th:src="@{/assets/images/noti.png}" src="../static/assets/images/noti.png">
+            <img th:src="@{/assets/images/mail.png}" src="../static/assets/images/mail.png">
+            <img th:src="@{/assets/images/user.png}" src="../static/assets/images/user.png">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit">
+                    <img th:src="@{/assets/images/logout.png}" src="../static/assets/images/logout.png">
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--ACCOUNT-->
+<div id="content" style="padding-left: 5px; padding-top: 5px; display: none; margin-top: 15px;">
+    <h2>ACCOUNTS LIST</h2>
+    <div class="dropdown-container">
+        <div class="dropdown1">
+            <label>Role:</label>
+            <select id = "roleDropdown">
+                <option value="option1">ADMIN</option>
+                <option value="option2">MANAGER</option>
+                <option value="option3">EMPLOYEE</option>
+            </select>
+        </div>
+        <div class="dropdown2">
+            <label>Department:</label>
+            <select id = "departmentDropdown">
+            </select>
+        </div>
+        <button onclick="submitFilter()">
+            <img th:src="@{/assets/images/filter.png}" src="../static/assets/images/filter.png" class="filter-icon">
+        </button>
+    </div>
+    <div class="search-box">
+        <input type="text" id="search-input" name="search" placeholder="Search by name">
+        <button onclick="searchByUsername()">
+            <img th:src="@{/assets/images/search.png}" src="../static/assets/images/search.png" alt="Search">
+        </button>
+    </div>
+    <div class="action-buttons">
+        <button onclick="submitAdd()">
+            <img th:src="@{/assets/images/add.png}" src="../static/assets/images/add.png" alt="Search">
+        </button>
+        <button onclick="submitDelete()">
+            <img th:src="@{/assets/images/delete.png}" src="../static/assets/images/delete.png" alt="Search">
+        </button>
+        <button onclick="submitRefresh()">
+            <img th:src="@{/assets/images/refresh.png}" src="../static/assets/images/refresh.png" alt="Search">
+        </button>
+    </div>
+
+    <div id="options">
+        <table id="userTable">
+            <thead>
+            <tr>
+                <th>Select</th>
+                <th>Username</th>
+                <th>Fullname</th>
+                <th>Role</th>
+                <th>Department</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            <!-- Điền dữ liệu từ backend vào đây nếu cần -->
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+        <p id="currentPageNum"></p>
+        <button th:onclick="previousPage()">
+            <img th:src="@{/assets/images/previous.png}" src="../static/assets/images/previous.png" alt="Search">
+        </button>
+        <button th:onclick="nextPage()">
+            <img th:src="@{/assets/images/next.png}" src="../static/assets/images/next.png" alt="Search">
+        </button>
+    </div>
+</div>
+
+<div id="registerFormOverlay" class="overlay">
+    <div class="registerForm">
+        <span class="close" onclick="closeForm()">&times;</span>
+        <h2>CREATE ACCOUNT</h2>
+        <form id="registerForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required maxlength="50"><br><br>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required maxlength="50"><br><br>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required maxlength="50"><br><br>
+            <label for="role">Role:</label>
+            <select id="role" name="role">
+                <option value="ADMIN">ADMIN</option>
+                <option value="MANAGER">MANAGER</option>
+                <option value="EMPLOYEE">EMPLOYEE</option>
+            </select><br><br>
+            <label for="departmentOptions">Department:</label>
+            <select id="departmentOptions">
+
+            </select>
+            <br><br>
+            <button type="submit" onclick="createAccount()">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div id="updateFormOverlay" class="overlay">
+    <div class="updateForm">
+        <span class="close" onclick="closeUpdateForm()">&times;</span>
+        <h2>UPDATE ACCOUNT</h2>
+        <form id="updateForm">
+            <label for="username_update">Username:</label>
+            <input type="text" id="username_update" name="username_update" readonly><br><br>
+            <label for="firstName_update">First Name:</label>
+            <input type="text" id="firstName_update" name="firstName_update" readonly><br><br>
+            <label for="lastName_update">Last Name:</label>
+            <input type="text" id="lastName_update" name="lastName_update" readonly><br><br>
+            <label for="role_update">Role:</label>
+            <select id="role_update" name="role_update">
+                <option value="ADMIN">ADMIN</option>
+                <option value="MANAGER">MANAGER</option>
+                <option value="EMPLOYEE">EMPLOYEE</option>
+            </select><br><br>
+            <label for="departmentOptions_update">Department:</label>
+            <select id="departmentOptions_update">
+
+            </select>
+            <br><br>
+            <button type="submit" onclick="updateAccount()">Save</button>
+        </form>
+    </div>
+</div>
+
+<!--DEPARTMENTS-->
+<div id="departmentContent" style="padding-left: 5px; padding-top: 5px; display: none; margin-top: 15px;">
+    <h2>DEPARTMENTS LIST</h2>
+    <div class="filter">
+        <label for="minDate">Min Date</label>
+        <input type="text" id="minDate" name="search">
+        <label for="maxDate">Max Date</label>
+        <input type="text" id="maxDate" name="search">
+        <label for="departmentOptions_update">Type:</label>
+        <select id="typeList">
+            <option>Dev</option>
+            <option>Test</option>
+            <option>ScrumMaster</option>
+            <option>PM</option>
+        </select>
+        <button onclick="filterDepartment()" id="filter_btn">
+            <img th:src="@{/assets/images/filter.png}" src="../static/assets/images/filter.png" class="filter-icon">
+        </button>
+    </div>
+    <div class="search-box">
+        <input type="text" id="search-departmentName" name="search" placeholder="Search by name">
+        <button onclick="searchByDepartmentName()">
+            <img th:src="@{/assets/images/search.png}" src="../static/assets/images/search.png" alt="Search">
+        </button>
+    </div>
+    <div class="action-buttons">
+        <button onclick="submitAddDepartment()">
+            <img th:src="@{/assets/images/add.png}" src="../static/assets/images/add.png" alt="Add Department">
+        </button>
+        <button onclick="submitDeleteDepartment()">
+            <img th:src="@{/assets/images/delete.png}" src="../static/assets/images/delete.png" alt="Delete Department">
+        </button>
+        <button onclick="submitRefresh()">
+            <img th:src="@{/assets/images/refresh.png}" src="../static/assets/images/refresh.png" alt="Refresh Departments">
+        </button>
+    </div>
+
+    <div id="departments">
+        <table id="departmentTable">
+            <thead>
+            <tr>
+                <th>Select</th>
+                <th>Name</th>
+                <th>Total Members</th>
+                <th>Type</th>
+                <th>Created Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="departmentBody">
+            <!-- Điền dữ liệu từ backend vào đây nếu cần -->
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+        <p id="currentPageNum2"></p>
+        <button th:onclick="previousPage2()">
+            <img th:src="@{/assets/images/previous.png}" src="../static/assets/images/previous.png" alt="Search">
+        </button>
+        <button th:onclick="nextPage2()">
+            <img th:src="@{/assets/images/next.png}" src="../static/assets/images/next.png" alt="Search">
+        </button>
+    </div>
+</div>
+
+
+<div id="addDepartmentFormOverlay" class="overlay">
+    <div class="addDepartmentForm">
+        <span class="close" onclick="closeAddDepartmentForm()">&times;</span>
+        <h2>ADD DEPARTMENT</h2>
+        <form id="addDepartmentForm">
+            <label for="departmentName">Name:</label>
+            <input type="text" id="departmentName" name="departmentName" required maxlength="50"><br><br>
+            <label for="type">Type:</label>
+            <select id="type" name="type">
+                <option>Dev</option>
+                <option>Test</option>
+                <option>ScrumMaster</option>
+                <option>PM</option>
+            </select><br><br>
+            <button type="submit" onclick="createDepartment()">Add</button>
+        </form>
+    </div>
+</div>
+
+<div id="updateDepartmentFormOverlay" class="overlay">
+    <div class="updateForm">
+        <span class="close" onclick="closeUpdateDepartmentForm()">&times;</span>
+        <h2>UPDATE ACCOUNT</h2>
+        <form id="updateDepartmentForm">
+            <label for="departmentName_update">Username:</label>
+            <input type="text" id="departmentName_update" name="departmentName_update" readonly><br><br>
+            <label for="type_update">Role:</label>
+            <select id="type_update" name="type_update">
+                <option>Dev</option>
+                <option>Test</option>
+                <option>ScrumMaster</option>
+                <option>PM</option>
+            </select>
+            <label for="total_member_update">Total members:</label>
+            <input type="text" id="total_member_update" name="total_member_update">
+            <br><br>
+            <button type="submit" onclick="updateDepartment()">Save</button>
+        </form>
+    </div>
+</div>
+
+
+</div>
+</body>
+</html>

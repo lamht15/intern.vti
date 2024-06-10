@@ -1,0 +1,353 @@
+/* Định dạng thanh điều hướng */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Đảm bảo padding và border tính vào kích thước của phần tử */
+}
+
+.navbar {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.navbar .content-nav {
+    background-color: #ffffff; /* Màu nền */
+    overflow:auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding-right: 10px; */
+    border: 2px solid black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+ }
+ /* Định dạng các liên kết trong thanh điều hướng */
+ .navbar .logo {
+    width: 51.3px;
+    height: 51.3px;   
+ }
+
+ .icons {
+    display: flex;
+ }
+
+ .icons img{
+    width: 25.98px;
+    height: 25.98px;
+    margin-right: 5px;
+ }
+
+.action-buttons img{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+.custom{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+.pagination {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.pagination .currentPageNum, .currentPageNum2  {
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+.pagination button {
+    margin-top: 5px; /* Khoảng cách giữa các nút */
+}
+
+.pagination img{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+button{
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.filter-icon{
+    width: 25.98px;
+    height: 25.98px;
+    margin-right: 5px;
+}
+
+.search-box img{
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+}
+
+.icons p{
+    margin-top: 3px;
+ }
+
+ .menu {
+    flex: 1; /* Phần dãn ra toàn bộ không gian có thể */
+ }
+
+ .menu a {
+    padding: 10px;
+    margin-left: 5px;
+    display: inline-block;
+    color: black; /* Đổi màu chữ nếu cần */
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 25px;
+ }
+
+ .dropdown-container {
+    display: flex;
+    margin-top: 15px;
+}
+
+.dropdown-container > div {
+    margin-right: 5px; /* Khoảng cách giữa các dropdown */
+}
+
+.dropdown-container select {
+    width: 150px; /* Độ rộng của dropdown */
+}
+
+.dropdown1 {
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.dropdown2 {
+    border: 2px solid black;
+    border-radius: 25px;    
+    padding: 5px;
+}
+
+.search-box {
+    border: 2px solid black;
+    border-radius: 25px;    
+    padding: 5px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+table {
+    border-collapse: collapse;
+    width: 99.6%;
+    margin-top: 15px;
+    padding-right: 5px;
+    padding-left: 0px;
+ }
+ th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 5px;
+ }
+ th {
+    background-color: #f2f2f2;
+ }
+
+ .action-buttons {
+    display: inline-block;
+    float: right;
+    padding: 5px;
+    margin-top: 15px;
+    margin-right: 5px;
+ }
+ .action-buttons button {
+    margin-left: 5px;
+ }
+
+/* CSS for the overlay and form */
+.overlay {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    z-index: 1000; /* Ensure this overlay appears on top of other elements */
+}
+
+.registerForm {
+    background-color: white;
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    border-radius: 5px;
+    position: relative;
+}
+
+.updateForm {
+    background-color: white;
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    border-radius: 5px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.createButton {
+    border: 2px solid blue; /* Đặt viền màu xanh dương với độ dày 2px */
+    border-radius: 5px; /* Làm cho góc của button cong */
+    outline: none;
+    background-color: red;
+    color: white; /* Đặt màu chữ là trắng */
+    padding: 10px 20px; /* Thiết lập padding để tạo khoảng cách giữa nội dung và viền */
+    cursor: pointer; /* Biến con trỏ thành kiểu "bàn tay" khi di chuột vào button */
+    font-size: 16px; /* Đặt kích thước chữ cho button */
+}
+
+input[type="checkbox"] {
+    width: 20px; /* Điều chỉnh chiều rộng của checkbox */
+    height: 20px; /* Điều chỉnh chiều cao của checkbox */
+}
+
+/* CSS for the Departments section */
+
+#departmentContent {
+    padding-left: 5px;
+    padding-top: 5px;
+    display: none;
+    margin-top: 15px;
+}
+
+#departmentContent .action-buttons {
+    display: inline-block;
+    float: right;
+    padding: 5px;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+#departmentContent .action-buttons button {
+    margin-left: 5px;
+}
+
+#departmentOptions {
+    margin-top: 15px;
+    padding-right: 5px;
+    padding-left: 0px;
+}
+
+#departmentOptions table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#departmentOptions th,
+#departmentOptions td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#departmentOptions th {
+    background-color: #f2f2f2;
+}
+
+/* CSS for the overlay and form for adding a new department */
+
+#addDepartmentFormOverlay,
+#updateDepartmentFormOverlay {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    z-index: 1000; /* Ensure this overlay appears on top of other elements */
+}
+
+.addDepartmentForm,
+.updateDepartmentForm {
+    background-color: white;
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    border-radius: 5px;
+    position: relative;
+}
+
+.addDepartmentForm .close,
+.updateDepartmentForm .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#departmentName,
+#totalMembers,
+#createdDate {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+#type {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    background-color: white;
+    color: #000000;
+}
+
+#createDepartmentButton,
+#updateDepartmentButton {
+    width: 100%;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#createDepartmentButton:hover,
+#updateDepartmentButton:hover {
+    background-color: #45a049;
+}
+
+
+
+ 

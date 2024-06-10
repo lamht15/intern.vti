@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" href="../static/assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/hello.css}" href="../static/assets/css/hello.css"/>
+    <script th:inline="javascript" th:src="@{/assets/js/hello.js}" src="../static/assets/js/hello.js"></script> <!-- Gọi tập tin JavaScript -->
+</head>
+<body>
+<div class="navbar">
+    <div class="content-nav">
+        <img th:src="@{/assets/images/home.png}" src="../static/assets/images/home.png" class="logo">
+        <div class="icons">
+            <img th:src="@{/assets/images/noti.png}" src="../static/assets/images/noti.png">
+            <img th:src="@{/assets/images/mail.png}" src="../static/assets/images/mail.png">
+            <button th:onclick="openFormRegister([[${username}]])">
+                <img th:src="@{/assets/images/user.png}" src="../static/assets/images/user.png">
+            </button>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit">
+                    <img th:src="@{/assets/images/logout.png}" src="../static/assets/images/logout.png">
+                </button>
+            </form>
+
+
+        </div>
+    </div>
+    <div id="hello-content">
+        <p id="welcome-content">Welcome to Your Page, <span th:text="${username}"></span></p>
+    </div>
+</div>
+
+<div id="update">
+    <form id="updateForm">
+        <span class="close" onclick="closeForm()">&times;</span>
+        <div>
+            <p>UPDATE</p>
+        </div>
+        <label for="username_const">Username:</label>
+        <input type="text" id="username_const" name="username_const" readonly><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required maxlength="50"><br><br>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required maxlength="50"><br><br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required maxlength="50"><br><br>
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="MANAGER">MANAGER</option>
+            <option value="EMPLOYEE">EMPLOYEE</option>
+        </select><br><br>
+        <label for="departmentOptions">Department:</label>
+        <select id="departmentOptions">
+            <option value="Marketing">Marketing</option>
+            <option value="Sale">Sale</option>
+            <option value="Bảo vệ">Bảo vệ</option>
+            <option value="Nhân sự">Nhân sự</option>
+            <option value="Kỹ thuật">Kỹ thuật</option>
+            <option value="Tài chính">Tài chính</option>
+            <option value="Phó giám đốc">Phó giám đốc</option>
+            <option value="Giám đốc">Giám đốc</option>
+            <option value="Thư kí">Thư kí</option>
+            <option value="Bán hàng">Bán hàng</option>
+        </select>
+        <br><br>
+        <button type="submit" onclick="updateAccount()">Update Now</button>
+    </form>
+</div>
+</body>
+</html>
